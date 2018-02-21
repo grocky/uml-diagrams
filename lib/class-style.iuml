@@ -1,0 +1,30 @@
+
+' skinparam linetype ortho
+
+' comment the line below if you're not using a retina display
+skinparam dpi 300
+
+skinparam minClassWidth 150
+
+' Remove shadows
+skinparam shadowing false
+' skinparam linetype ortho
+skinparam padding 4
+
+' Defines the style for TABLE stereotypes
+skinparam class {
+    headerBackgroundColor LightSteelBlue
+    backgroundColor White
+    borderColor DarkGray
+}
+
+' Defines the style for lines
+skinparam arrow {
+    color DarkGray
+}
+
+' hide C circle
+hide circle
+
+' hide stereotype labels
+hide stereotypes

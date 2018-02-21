@@ -1,0 +1,65 @@
+@startuml example
+
+!include lib/class-style.iuml
+
+class Unit {
+    move()
+    meleeAttack()
+    rangeAttack()
+    display()
+}
+
+' class Unit {
+'     move()
+'     shootBlaster()
+'     display()
+' }
+
+class StormTrooper {
+    meleeAttack()
+    rangeAttack()
+    display()
+    .. implementation ..
+    meleeAttach() - Pistol whip
+    rangeAttach() - Shoot blaster
+    display() - Looks like a storm trooper
+}
+
+class DeathTrooper {
+    meleeAttack()
+    rangeAttack()
+    display()
+    .. implementation ..
+    meleeAttach() - Pistol whip
+    rangeAttach() - Shoot blaster
+    display() - Looks like a death trooper
+}
+
+class FlameTrooper {
+    meleeAttack()
+    rangeAttack()
+    display()
+    .. implementation ..
+    meleeAttach() - Pistol whip
+    rangeAttach() - Shoot blaster
+    display() - Looks like a flame trooper
+}
+
+class DarthVader {
+    meleeAttack()
+    rangeAttack()
+    display()
+    .. implementation ..
+    meleeAttach() - Use lightsaber 
+    rangeAttach() - Use the force
+    display() - Looks like a badd@ss
+}
+
+
+StormTrooper -up-|> Unit
+DeathTrooper -up-|> Unit
+FlameTrooper -up-|> Unit
+DarthVader -up-|> Unit
+
+
+@enduml
