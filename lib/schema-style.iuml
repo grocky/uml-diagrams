@@ -1,0 +1,44 @@
+' comment the line below if you're not using a retina display
+skinparam dpi 300
+
+' Declare a table with custom icon with a TABLE sterotype
+!define Table(name) class name <<(T,white)>><<TABLE>>
+!define Table(name, desc) class name as "desc" <<(T,white)>><<TABLE>>
+
+' Primary keys are green, bolded and underlined
+!define primary_key(x) <color:green>not_null(unique(x))</color>
+
+' Foreign keys are italicized
+!define foreign_key(x) <i>x</i>
+
+' Unique constraints are bold
+!define unique(x) <b>x</b>
+
+' Required fields are underlined
+!define not_null(x) <u>x</u>
+
+' Remove shadows
+skinparam shadowing false
+' skinparam linetype ortho
+skinparam padding 8
+
+' Defines the style for TABLE stereotypes
+skinparam class {
+    headerBackgroundColor<<TABLE>> LightSteelBlue
+    backgroundColor<<TABLE>> White
+    borderColor<<TABLE>> DarkGray
+}
+
+' Defines the style for lines
+skinparam arrow {
+    color DarkGray
+}
+
+' Uncomment to hide table icon
+' hide <<TABLE>> circle
+
+' hide methods
+hide methods
+
+' hide stereotype labels
+hide stereotypes
