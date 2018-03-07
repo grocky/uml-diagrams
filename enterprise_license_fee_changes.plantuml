@@ -1,0 +1,26 @@
+@startuml purchase_schema
+
+!include lib/schema-style.iuml
+
+Table(shopping_cart_stock_item_purchase_options) {
+    primary_key(id) : INT
+    <color:green>license_fee_id: INT</color>
+
+}
+Table(shopping_cart_purchase_stock_items) {
+    primary_key(id) : INT
+    <color:green>license_fee_id: INT</color>
+
+}
+Table(stock_item_purchase_option_fees) {
+    primary_key(id) : INT
+    plan_id : INT
+    fee : DECIMAL(8,2)
+
+}
+
+
+shopping_cart_purchase_stock_items --> stock_item_purchase_option_fees 
+shopping_cart_stock_item_purchase_options --> stock_item_purchase_option_fees
+
+@enduml
