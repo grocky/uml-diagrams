@@ -20,14 +20,14 @@ Table(stock_item_purchase_option_license_fees) {
     license_id : INT
 }
 
-Table(stock_item_licenses) {
+Table(stock_licenses) {
     primary_key(id) : INT
-    title : INT
+    title : TEXT UNIQUE NOT NULL
     description: TEXT
     public_url : DECIMAL
 }
 
-stock_item_purchase_option_license_fees --RIGHT-> stock_item_licenses : license_id::id
+stock_item_purchase_option_license_fees --RIGHT-> stock_licenses : license_id::id
 shopping_cart_stock_item_purchase_options --> stock_item_purchase_option_license_fees : licnese_fee_id::id
 shopping_cart_purchase_stock_items ..UP.> stock_item_purchase_option_license_fees : snapshot of fee after purchase
 
