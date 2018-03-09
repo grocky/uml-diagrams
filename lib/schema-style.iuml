@@ -1,5 +1,6 @@
 ' comment the line below if you're not using a retina display
 skinparam dpi 300
+' skinparam linetype ortho
 
 ' Declare a table with custom icon with a TABLE sterotype
 !define Table(name) class name <<(T,white)>><<TABLE>>

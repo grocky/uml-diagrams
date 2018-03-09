@@ -1,0 +1,85 @@
+@startuml example
+
+!include lib/class-style.iuml
+
+' class ContextA {
+'     State state
+'     request()
+'     .. implementation ..
+'     state() - state.handle()
+' }
+
+' interface State {
+'     handle()
+' }
+
+' class ConcreteStateA {
+
+' }
+
+' class ConcreteStateB {
+
+' }
+
+' ContextA -right- State
+' ConcreteStateA -up-|> State
+' ConcreteStateB -up-|> State
+
+class ContextB {
+    Strategy strategy
+    execute()
+    .. implementation ..
+    execute() - strategy.execute()
+}
+
+interface Strategy {
+    execute()
+}
+
+class ConcreteStrategyA {
+
+}
+
+class ConcreteStrategyB {
+
+}
+
+ContextB -right- Strategy
+ConcreteStrategyA -up-|> Strategy
+ConcreteStrategyB -up-|> Strategy
+
+' class Gate {
+'     GateState state
+'     enter()
+'     authStart()
+'     authOk()
+'     authFailed()
+'     .. implementation ..
+'     enter() - state.enter()
+' }
+
+' interface GateState {
+'     enter()
+'     authStart()
+'     authOk()
+'     authFailed()
+' }
+
+' class OpenGateState {
+
+' }
+
+' class ClosedGateState {
+
+' }
+
+' class ProcessingGateState {
+
+' }
+
+' Gate -right- GateState
+' OpenGateState -up-|> GateState
+' ClosedGateState -up-|> GateState
+' ProcessingGateState -up-|> GateState
+
+@enduml

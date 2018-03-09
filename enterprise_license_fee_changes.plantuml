@@ -5,22 +5,21 @@
 Table(shopping_cart_stock_item_purchase_options) {
     primary_key(id) : INT
     <color:green>license_fee_id: INT</color>
-
 }
+
 Table(shopping_cart_purchase_stock_items) {
     primary_key(id) : INT
     <color:green>license_fee_id: INT</color>
-
 }
-Table(stock_item_purchase_option_fees) {
+
+Table(stock_item_purchase_option_license_fees) {
     primary_key(id) : INT
     plan_id : INT
-    fee : DECIMAL(8,2)
-
+    format_type_id: INT
+    fee : DECIMAL
 }
 
-
-shopping_cart_purchase_stock_items --> stock_item_purchase_option_fees 
-shopping_cart_stock_item_purchase_options --> stock_item_purchase_option_fees
+shopping_cart_purchase_stock_items --> stock_item_purchase_option_license_fees::id : license_fee_id::id
+shopping_cart_stock_item_purchase_options --> stock_item_purchase_option_license_fees::id : licnese_fee_id::id
 
 @enduml

@@ -1,0 +1,55 @@
+@startuml purchase_schema
+
+!include lib/schema-style.iuml
+
+package accounts {
+    Table(user_subscriptions) {
+        primary_key(id) : INT
+        not_null(site_id) : TINYINT[1]
+        not_null(plan_id) : INT
+        foreign_key(organization_id) : SMALLINT
+    }
+}
+
+package stockblocks {
+    Table(organizations) {
+        primary_key(id) : INT
+        not_null(unique(short_name)) : VARCHAR[25]
+        not_null(title) : VARCHAR[255]
+        default_plan_id : INT
+        is_test_account : TINYINT[1]
+        date_added : TIMESTAMP
+    }
+    Table(organization_custom_pricing) {
+        foreign_key(not_null(organization_id)) : INT
+        foreign_key(not_null(stock_library_id)) : INT
+        purchase_option_type : ENUM
+        not_null(price) : DECIMAL(6,2)
+        not_null(date_added) : TIMESTAMP
+        date_updated : TIMESTAMP
+    }
+    Table(stock_libraries) {
+        primary_key(id) : INT
+        not_null(unique(short_name)) : VARCHAR[50]
+        not_null(title) : VARCHAR[100]
+        not_null(date_added) : TIMESTAMP
+    }
+    Table(stock_items_stock_libraries) {
+        foreign_key(not_null(stock_library_id)) : INT
+        foreign_key(not_null(stock_item_id)) : INT
+    }
+    Table(stock_items) {
+        primary_key(id) : INT
+        not_null(is_active) : TINYINT
+        not_null(is_marketplace_item) : TINYINT
+    }
+}
+
+' one to may relationship
+user_subscriptions }- organizations
+organization_custom_pricing }- organizations
+organization_custom_pricing }- stock_libraries
+stock_items_stock_libraries }- stock_libraries
+stock_items_stock_libraries }- stock_items
+
+@enduml

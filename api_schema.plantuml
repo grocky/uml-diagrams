@@ -1,0 +1,41 @@
+@startuml purchase_schema
+
+!include lib/schema-style.iuml
+
+Table(api_users) {
+    primary_key(id) : INT
+    not_null(username) : TINYINT[1]
+    not_null(unique(api_key)) : INT
+}
+Table(api_functions, "api_functions\n(endpoint actions)") {
+    primary_key(id) : INT
+    not_null(resource) : VARCHAR[25]
+    not_null(function) : ENUM[]
+}
+Table(api_user_function_limits, "api_user_function_limits\n(rate limits)") {
+    foreign_key(not_null(api_user_id)) : int
+    foreign_key(not_null(api_functions_id)) : int
+    not_null(max_requests_per_day) : int
+}
+Table(api_permissions, "api_permissions\n(rate limits)") {
+
+    primary_key(id) : int
+    not_null(name) : varchar[50]
+    not_null(description) : varchar[255]
+    not_null(type) : ENUM[] 
+}
+Table(api_user_function_permissions, "api_user_function_permissions\n(rate limits)") {
+    foreign_key(not_null(api_user_id)) : int
+    foreign_key(not_null(api_functions_id)) : int
+    foreign_key(not_null(api_permission_id)) : int
+    not_null(value) : int
+}
+
+api_user_function_permissions "*" -- "1" api_users
+api_user_function_permissions "*" -- "1" api_functions
+api_user_function_permissions "*" -- "1" api_permissions
+
+api_user_function_limits "*" -- "1" api_users
+api_user_function_limits "*" -- "1" api_functions
+
+@enduml
