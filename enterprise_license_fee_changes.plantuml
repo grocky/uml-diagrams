@@ -4,20 +4,20 @@
 
 Table(shopping_cart_stock_item_purchase_options) {
     primary_key(id) : INT
-    <color:green>license_fee_id: INT</color>
+    <color:green>price_adjustment_id: INT</color>
 }
 
 Table(shopping_cart_purchase_stock_items) {
     primary_key(id) : INT
-    <color:green>license_fee: DECIMAL</color>
+    <color:green>price_adjustment: DECIMAL</color>
 }
 
-Table(stock_item_purchase_option_license_fees) {
+Table(stock_item_purchase_option_price_adjustments) {
     primary_key(id) : INT
     plan_id : INT
     format_type_id: INT
-    fee : DECIMAL
-    license_id : INT
+    price_adjustment : DECIMAL
+    stock_license_id : INT
 }
 
 Table(stock_licenses) {
@@ -27,8 +27,8 @@ Table(stock_licenses) {
     public_url : DECIMAL
 }
 
-stock_item_purchase_option_license_fees --RIGHT-> stock_licenses : license_id::id
-shopping_cart_stock_item_purchase_options --> stock_item_purchase_option_license_fees : licnese_fee_id::id
-shopping_cart_purchase_stock_items ..UP.> stock_item_purchase_option_license_fees : snapshot of fee after purchase
+stock_item_purchase_option_price_adjustments --RIGHT-> stock_licenses : stock_license_id::id
+shopping_cart_stock_item_purchase_options --> stock_item_purchase_option_price_adjustments : price_adjustment_id::id
+shopping_cart_purchase_stock_items ..UP.> stock_item_purchase_option_price_adjustments : snapshot of fee after purchase
 
 @enduml
